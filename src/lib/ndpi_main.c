@@ -2523,7 +2523,8 @@ void ndpi_exit_detection_module(struct ndpi_detection_module_struct *ndpi_struct
 
 #ifndef __KERNEL__
     if(ndpi_struct->ookla_cache)
-     ndpi_lru_free_cache(ndpi_struct->ookla_cache);
+      ndpi_lru_free_cache(ndpi_struct->ookla_cache);
+#endif
 
     if(ndpi_struct->protocols_ptree)
       ndpi_Destroy_Patricia((patricia_tree_t*)ndpi_struct->protocols_ptree, free_ptree_data);
@@ -3855,6 +3856,7 @@ void ndpi_connection_tracking(struct ndpi_detection_module_struct *ndpi_struct,
     if(!ndpi_struct->direction_detect_disable)
       packet->packet_direction = (le16toh(tcph->source) < le16toh(tcph->dest)) ? 1 : 0;
 
+
     if(tcph->syn != 0 && tcph->ack == 0 && flow->l4.tcp.seen_syn == 0 && flow->l4.tcp.seen_syn_ack == 0
        && flow->l4.tcp.seen_ack == 0) {
       flow->l4.tcp.seen_syn = 1;
@@ -3918,6 +3920,7 @@ void ndpi_connection_tracking(struct ndpi_detection_module_struct *ndpi_struct,
   } else if(udph != NULL) {
     if(!ndpi_struct->direction_detect_disable)
       packet->packet_direction = (le16toh(udph->source) < le16toh(udph->dest)) ? 1 : 0;
+
   }
 
   if(flow->packet_counter < MAX_PACKET_COUNTER && packet->payload_packet_len) {
@@ -6339,14 +6342,26 @@ void ndpi_set_log_level(struct ndpi_detection_module_struct *ndpi_mod, u_int l) 
 /* LRU cache */
 
 struct ndpi_lru_cache* ndpi_lru_cache_init(u_int32_t num_entries) {
+#ifndef __KERNEL__
   struct ndpi_lru_cache *c = (struct ndpi_lru_cache*)malloc(sizeof(struct ndpi_lru_cache));
+#else
+  struct ndpi_lru_cache *c = (struct ndpi_lru_cache*)kmalloc(sizeof(struct ndpi_lru_cache), GFP_KERNEL);
+#endif
 
   if(!c) return(NULL);
 
+#ifndef __KERNEL__
   c->entries = (u_int32_t*)calloc(num_entries, sizeof(u_int32_t));
+#else
+  c->entries = (u_int32_t*)kcalloc(num_entries, sizeof(u_int32_t), GFP_KERNEL);
+#endif
 
   if(!c->entries) {
+#ifndef __KERNEL__
     free(c);
+#else
+    kfree(c);
+#endif
     return(NULL);
   } else  
     c->num_entries = num_entries;
@@ -6355,8 +6370,13 @@ struct ndpi_lru_cache* ndpi_lru_cache_init(u_int32_t num_entries) {
 }
 
 void ndpi_lru_free_cache(struct ndpi_lru_cache *c) {
+#ifndef __KERNEL__
   free(c->entries);
   free(c);
+#else
+  kfree(c->entries);
+  kfree(c);
+#endif
 }
 
 

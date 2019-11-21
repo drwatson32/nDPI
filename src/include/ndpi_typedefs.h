@@ -1194,6 +1194,7 @@ struct ndpi_flow_struct {
   u_int16_t packet_direction_counter[2];
   u_int16_t byte_counter[2];
   /* NDPI_PROTOCOL_BITTORRENT */
+  u_int32_t bittorrent_seq;
   u_int8_t bittorrent_stage;		      // can be 0 - 255
 
   /* NDPI_PROTOCOL_DIRECTCONNECT */
