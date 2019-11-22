@@ -213,6 +213,7 @@ am_libndpi_a_OBJECTS = libndpi_a-ndpi_main.$(OBJEXT) \
 	protocols/libndpi_a-memcached.$(OBJEXT) \
 	protocols/libndpi_a-mining.$(OBJEXT) \
 	protocols/libndpi_a-mgcp.$(OBJEXT) \
+	protocols/libndpi_a-modbus.$(OBJEXT) \
 	protocols/libndpi_a-mpegts.$(OBJEXT) \
 	protocols/libndpi_a-mqtt.$(OBJEXT) \
 	protocols/libndpi_a-msn.$(OBJEXT) \
@@ -600,6 +601,7 @@ libndpi_a_SOURCES = ndpi_content_match.c.inc \
 		     protocols/memcached.c \
 		     protocols/mining.c \
 		     protocols/mgcp.c \
+		     protocols/modbus.c \
 		     protocols/mpegts.c \
 		     protocols/mqtt.c \
 		     protocols/msn.c \
@@ -913,6 +915,8 @@ protocols/libndpi_a-memcached.$(OBJEXT): protocols/$(am__dirstamp) \
 protocols/libndpi_a-mining.$(OBJEXT): protocols/$(am__dirstamp) \
 	protocols/$(DEPDIR)/$(am__dirstamp)
 protocols/libndpi_a-mgcp.$(OBJEXT): protocols/$(am__dirstamp) \
+	protocols/$(DEPDIR)/$(am__dirstamp)
+protocols/libndpi_a-modbus.$(OBJEXT): protocols/$(am__dirstamp) \
 	protocols/$(DEPDIR)/$(am__dirstamp)
 protocols/libndpi_a-mpegts.$(OBJEXT): protocols/$(am__dirstamp) \
 	protocols/$(DEPDIR)/$(am__dirstamp)
@@ -1252,6 +1256,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@protocols/$(DEPDIR)/libndpi_a-memcached.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@protocols/$(DEPDIR)/libndpi_a-mgcp.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@protocols/$(DEPDIR)/libndpi_a-mining.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@protocols/$(DEPDIR)/libndpi_a-modbus.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@protocols/$(DEPDIR)/libndpi_a-mpegts.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@protocols/$(DEPDIR)/libndpi_a-mqtt.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@protocols/$(DEPDIR)/libndpi_a-msn.Po@am__quote@
@@ -2349,6 +2354,20 @@ protocols/libndpi_a-mgcp.obj: protocols/mgcp.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='protocols/mgcp.c' object='protocols/libndpi_a-mgcp.obj' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libndpi_a_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o protocols/libndpi_a-mgcp.obj `if test -f 'protocols/mgcp.c'; then $(CYGPATH_W) 'protocols/mgcp.c'; else $(CYGPATH_W) '$(srcdir)/protocols/mgcp.c'; fi`
+
+protocols/libndpi_a-modbus.o: protocols/modbus.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libndpi_a_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT protocols/libndpi_a-modbus.o -MD -MP -MF protocols/$(DEPDIR)/libndpi_a-modbus.Tpo -c -o protocols/libndpi_a-modbus.o `test -f 'protocols/modbus.c' || echo '$(srcdir)/'`protocols/modbus.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) protocols/$(DEPDIR)/libndpi_a-modbus.Tpo protocols/$(DEPDIR)/libndpi_a-modbus.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='protocols/modbus.c' object='protocols/libndpi_a-modbus.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libndpi_a_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o protocols/libndpi_a-modbus.o `test -f 'protocols/modbus.c' || echo '$(srcdir)/'`protocols/modbus.c
+
+protocols/libndpi_a-modbus.obj: protocols/modbus.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libndpi_a_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT protocols/libndpi_a-modbus.obj -MD -MP -MF protocols/$(DEPDIR)/libndpi_a-modbus.Tpo -c -o protocols/libndpi_a-modbus.obj `if test -f 'protocols/modbus.c'; then $(CYGPATH_W) 'protocols/modbus.c'; else $(CYGPATH_W) '$(srcdir)/protocols/modbus.c'; fi`
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) protocols/$(DEPDIR)/libndpi_a-modbus.Tpo protocols/$(DEPDIR)/libndpi_a-modbus.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='protocols/modbus.c' object='protocols/libndpi_a-modbus.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libndpi_a_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o protocols/libndpi_a-modbus.obj `if test -f 'protocols/modbus.c'; then $(CYGPATH_W) 'protocols/modbus.c'; else $(CYGPATH_W) '$(srcdir)/protocols/modbus.c'; fi`
 
 protocols/libndpi_a-mpegts.o: protocols/mpegts.c
 @am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libndpi_a_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT protocols/libndpi_a-mpegts.o -MD -MP -MF protocols/$(DEPDIR)/libndpi_a-mpegts.Tpo -c -o protocols/libndpi_a-mpegts.o `test -f 'protocols/mpegts.c' || echo '$(srcdir)/'`protocols/mpegts.c

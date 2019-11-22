@@ -91,6 +91,7 @@ libndpi_a_SOURCES = ndpi_content_match.c.inc \
 		     protocols/memcached.c \
 		     protocols/mining.c \
 		     protocols/mgcp.c \
+		     protocols/modbus.c \
 		     protocols/mpegts.c \
 		     protocols/mqtt.c \
 		     protocols/msn.c \
